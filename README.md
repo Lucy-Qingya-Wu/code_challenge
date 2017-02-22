@@ -1,4 +1,4 @@
-# Code Challenge
+# Code Challenge 
 
 This CRM project contains the following features:
 * Add a lead (name, phone number),
@@ -6,6 +6,10 @@ This CRM project contains the following features:
 * Schedule an appointment,
 * Convert lead to account
 * Update phone number
+
+Node.js, Express.js, MongoDB, Mongoose, Passport.js and Bootstrap are used to build this web app. 
+
+Project was finished within four days. 
 
 To run the app:
 ```
