@@ -1,0 +1,98 @@
+<h2 id="customer_list_title" class="page-header">Customer list</h2>
+{{#if errors}}
+  {{#each errors}}
+    <div class="alert alert-danger">{{msg}}</div>
+  {{/each}}
+{{/if}}
+
+{{#if customers}}
+
+<table class="table">
+    
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number (format: xxx-xxx-xxxx)</th>
+        <th>Actions</th>
+      </tr>
+  
+    <tbody>
+
+    {{#each customers}}
+      <tr id={{_id}}>
+        <td>{{firstname}}</td>
+        <td>{{lastname}}</td>
+        <td class="phonenum" name="phonenum">{{phonenum}}</td>
+        <td class="action"><button class="edit" type="button" onclick="edit(this);">edit phone number</button></td>
+      </tr>
+    {{/each}}
+    </tbody>
+</table>
+
+
+{{else}}
+    <p>There is no data in customer database.</p>
+{{/if}}
+
+<p id="msg"></p>
+
+<script type="text/javascript">
+  
+function edit(element){
+  var tr = jQuery(element).parent().parent();
+  var phonenum_cell = tr.find(".phonenum");
+  if(!tr.hasClass("editing")) {
+    
+    tr.addClass("editing");
+    var old_phonenum_cell_value = phonenum_cell.text();
+    phonenum_cell.text("");
+    phonenum_cell.append('<input maxlength="12" size="12" type="text" value="'+old_phonenum_cell_value+'" >');
+    tr.find(".edit").text("save phone number");
+    
+  } else {
+    
+
+    var phonenum = phonenum_cell.find("input").val();
+
+    if (phonenum.length == 0){
+    
+      $("#msg").text("Phone number is required").show(0).delay(2000).hide(0);
+    }
+    else if (phonenum.length != 12 || phonenum.substring(3,4) != '-' || phonenum.substring(7,8) != '-'){
+     
+      $("#msg").text("Phone number format should be xxx-xxx-xxxx").show(0).delay(2000).hide(0);
+    }
+    else{
+      
+      var result = phonenum.match(/\d/g).length===10;
+      
+      if (result){
+        var id = tr.attr('id');
+
+        $.ajax({
+
+          url:'/users/editcustomer/',
+          method:'PUT',
+          contentType:'application/json',
+          data:JSON.stringify({id:id, phonenum:phonenum}),
+          success:function(response){
+            console.log(response);
+            $("#msg").text(response).show(0).delay(2000).hide(0);
+            var new_phone_num = phonenum_cell.find("input").val();
+            phonenum_cell.find("input").remove();
+            phonenum_cell.text(new_phone_num);
+            tr.find(".edit").text("edit phone number");
+            tr.removeClass("editing");
+          }
+
+        });
+      }else{
+      
+        $("#msg").text("Phone number format should be xxx-xxx-xxxx").show(0).delay(2000).hide(0);
+      }
+    }
+  }
+}
+
+</script>
+

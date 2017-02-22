@@ -1,0 +1,44 @@
+<h2 class="page-header">Making an appointment</h2>
+{{#if errors}}
+    {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+    {{/each}}
+{{/if}}
+<form method="post" action="/users/makeappointment">
+
+            <div class="form-group">
+                <label>Customer name</label>
+                
+                <select name="customerid" class="form-control">
+                    
+                    {{#if customers}}
+                        <option value=''>Please select the customer</option>
+                        {{#each customers}}
+                            <option value={{_id}}>{{firstname}} {{lastname}}</option>
+            
+                        {{/each}}
+                    {{else}}
+                        <option value=''>No customer in database</option>
+                    {{/if}}
+                    
+
+                </select>
+            </div>
+
+     
+            <div class="form-group">
+                <label>Date and time</label>
+                <div class='input-group date datetimepicker' required>
+                    <input type='text' class="form-control" name="datetime" placeholder="Please select date and time" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+ 
+
+            <button type="submit" class="btn btn-default">Submit</button>
+
+            <a href="/"><button type="button" class="btn btn-default">Cancel</button></a>
+            
+</form>

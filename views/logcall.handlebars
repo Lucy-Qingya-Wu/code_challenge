@@ -1,0 +1,55 @@
+<h2 class="page-header">Logging a call</h2>
+{{#if errors}}
+    {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+    {{/each}}
+{{/if}}
+<form method="post" action="/users/logcall">
+
+			<div class="form-group">
+                <label>Call subject (for example, "Sales Call")</label>
+                <input type="text" class="form-control" name="subject">
+            </div>
+
+            <div class="form-group">
+                <label>Customer name</label>
+                
+                <select name="customerid" class="form-control">
+                    
+                    {{#if customers}}
+                        <option value=''>Please select the customer</option>
+                        {{#each customers}}
+                            <option value={{_id}}>{{firstname}} {{lastname}}</option>
+            
+                        {{/each}}
+                    {{else}}
+                        <option value=''>No customer in database</option>
+                    {{/if}}
+                    
+
+                </select>
+            </div>
+
+     
+            <div class="form-group">
+                <label>Call date and time</label>
+                <div class='input-group date datetimepicker' required>
+                    <input type='text' class="form-control" name="datetime" placeholder="Please select date and time" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+ 
+ 			<div class="form-group">
+                <label>Call notes</label>
+            	<textarea class="span6 form-control" name="note" rows="3" ></textarea>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-default">Submit</button>
+
+            <a href="/"><button type="button" class="btn btn-default">Cancel</button></a>
+            
+</form>

@@ -1,0 +1,33 @@
+<h2 class="page-header">Adding a lead</h2>
+{{#if errors}}
+	{{#each errors}}
+		<div class="alert alert-danger">{{msg}}</div>
+	{{/each}}
+{{/if}}
+<form method="post" action="/users/addlead">
+
+			<div class="form-group">
+                <label>First name</label>
+                <input type="text" class="form-control" name="firstname">
+            </div>
+
+
+            <div class="form-group">
+                <label>Last name</label>
+                <input type="text" class="form-control" name="lastname">
+            </div>
+
+ 
+ 			<div class="form-group">
+                <label>Phone number (format: xxx-xxx-xxxx)</label>
+            	<input type="text" class="form-control" maxlength="12" size="12" name="phonenum" placeholder="xxx-xxx-xxxx" pattern="^\(?([0-9]{3})\)?[-]?([0-9]{3})[-]?([0-9]{4})$">
+            </div>
+
+		
+
+            <button type="submit" class="btn btn-default">Convert lead to customer account</button>
+            
+       		<a href="/"><button type="button" class="btn btn-default">Cancel</button></a>
+</form>
+
+
