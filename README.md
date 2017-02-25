@@ -11,7 +11,7 @@ Node.js, Express.js, MongoDB, Mongoose, Passport.js and Bootstrap are used to bu
 
 Project was finished within four days (Feb 18, 2017 - Feb 21, 2017). 
 
-To run the app:
+## To run the app:
 
 Step 1: make sure you have node.js, MongoDB and npm installed
 
@@ -29,7 +29,7 @@ Step 4: open another terminal and run the server
 ```
 node app
 ```
-Step 5: load `http://localhost:8080`, you should see the login page. 
+Step 5: load `http://localhost:8080` and you should see the login page
 
 Step 6: register a new account and you should see the dashboard
 
