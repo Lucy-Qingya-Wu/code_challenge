@@ -15,23 +15,17 @@ Project was finished within four days (Feb 18, 2017 - Feb 21, 2017).
 
 Step 1: make sure you have node.js, MongoDB and npm installed
 
-
-Step 2: set MongoDB database path: 
-```
-mongod --dbpath /data/db
-```
-
-Step 3: open a terminal and run MongoDB:
+Step 2: open a terminal and run MongoDB:
 ```
 mongod
 ```
-Step 4: open another terminal and run the server
+Step 3: open another terminal and run the server
 ```
 node app
 ```
-Step 5: load `http://localhost:8080` and you should see the login page
+Step 4: load `http://localhost:8080` and you should see the login page
 
-Step 6: register a new account and you should see the dashboard
+Step 5: register a new account and you should see the dashboard
 
 ## 
 
